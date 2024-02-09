@@ -11,6 +11,7 @@ class Customtext extends StatelessWidget {
   final FontWeight? fontWeight;
   final double? fontSize;
   final int? maxLines;
+  final bool? softWrap;
 
   const Customtext({
     super.key,
@@ -18,7 +19,8 @@ class Customtext extends StatelessWidget {
     this.styleType = TextStyleType.BODY,
     this.textColor = Colors.white,
     this.fontWeight,
-    this.fontSize, this.overFlow, this.maxLines,
+    this.fontSize, this.overFlow
+    , this.maxLines, this.softWrap,
   });
 
   @override
@@ -27,6 +29,8 @@ class Customtext extends StatelessWidget {
     return Text(
       text,
       style: getStyle(size),
+      maxLines: maxLines,
+      overflow: maxLines != 1 ? TextOverflow.ellipsis :TextOverflow.visible ,
     );
   }
 

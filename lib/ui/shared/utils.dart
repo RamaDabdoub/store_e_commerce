@@ -1,7 +1,9 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:empty_code/core/data/repositry/shared_prefrence_repositry.dart';
+import 'package:empty_code/core/services/cart_service.dart';
 import 'package:empty_code/core/services/connectivity_service.dart';
+import 'package:empty_code/core/services/favorite_service.dart';
 import 'package:empty_code/ui/shared/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -60,6 +62,7 @@ SharedPrefrenceRepository get storage => Get.find<
     SharedPrefrenceRepository>(); // الفايند بتتعامل مع النوع فبقلا روحي جيبيلي هاد الاوبجيكت
 ConnectivitySerivce get connectivitySerivce => Get.find<ConnectivitySerivce>();
 Connectivity get connectivity => Get.find<Connectivity>();
-// CartService get cartserivce => Get.find<CartService>();
+CartService get cartserivce => Get.find<CartService>();
+FavoriteService get favoriteservice => Get.find<FavoriteService>();
 
-bool isOnline = false;
+bool isOnline = true;

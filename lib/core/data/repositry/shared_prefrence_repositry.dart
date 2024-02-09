@@ -1,5 +1,5 @@
-import 'dart:convert';
-
+import 'package:empty_code/core/data/models/cart_model.dart';
+import 'package:empty_code/core/data/models/product_model.dart';
 import 'package:empty_code/core/enums/data_type.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -16,6 +16,7 @@ class SharedPrefrenceRepository {
   String PREF_TOKEN_INFO = 'token_info';
   String PREF_APP_LANG = 'app_language';
    String PREF_CART_LIST = 'cart_list';
+   String PREF_FAVORITE_LIST = 'favorite_list';
 
   void setLoggedIn(bool value) {
     setPrefrenc(type: DataType.BOOL, key: PREF_IS_LOGGED, value: value);
@@ -76,20 +77,36 @@ class SharedPrefrenceRepository {
       return 'en';
     }
   }
-  // void setCartList(List<CartModel> list) {
-  //   setPrefrenc(
-  //       type: DataType.STRING,
-  //       key: PREF_CART_LIST,
-  //       value: CartModel.encode(list));
-  // }
+  void setCartList(List<CartModel> list) {
+    setPrefrenc(
+        type: DataType.STRING,
+        key: PREF_CART_LIST,
+        value: CartModel.encode(list));
+  }
 
-  // List<CartModel> getCartList() {
-  //   if (pref.containsKey(PREF_CART_LIST))
+  List<CartModel> getCartList() {
+    if (pref.containsKey(PREF_CART_LIST))
     
-  //     return CartModel.decode(getPrefrence(PREF_CART_LIST));
-  //   else
-  //     return [];
-  // }
+      return CartModel.decode(getPrefrence(PREF_CART_LIST));
+    else
+      return [];
+  }
+
+    void setFavoriteList(List<ProductModel> list) {
+    setPrefrenc(
+        type: DataType.STRING,
+        key: PREF_FAVORITE_LIST,
+        value: ProductModel.encode(list),
+        );
+  }
+
+  List<ProductModel> getFavoriteList() {
+    if (pref.containsKey(PREF_FAVORITE_LIST))
+    
+      return ProductModel.decode(getPrefrence(PREF_FAVORITE_LIST));
+    else
+      return [];
+  }
 
   //*====================================
 
