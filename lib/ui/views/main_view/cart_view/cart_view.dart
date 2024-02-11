@@ -7,11 +7,13 @@ import 'package:empty_code/ui/shared/utils.dart';
 import 'package:empty_code/ui/views/checkout_view/checkout_view.dart';
 import 'package:empty_code/ui/views/main_view/cart_view/cart_controller.dart';
 import 'package:empty_code/ui/views/main_view/cart_view/cart_widget.dart';
+import 'package:empty_code/ui/views/product_details_view/product_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CartView extends StatefulWidget {
-  CartView({super.key});
+ 
+  CartView({super.key,});
 
   @override
   State<CartView> createState() => _CartViewState();
@@ -45,9 +47,15 @@ class _CartViewState extends State<CartView> {
                       shrinkWrap: true,
                       itemCount: controller.cartList.length,
                       itemBuilder: (context, index) {
-                        return CartWidget(
-                            index: index,
-                            product: controller.cartList[index].productModel!);
+                        return InkWell(
+                         
+                          child: CartWidget(
+                                 onTap: ()async{
+                            await  Get.to(ProductDetailsView(product: controller.cartList[index].productModel!))!.then((value) => cartserivce.cartList[index].qty.toString()); 
+                          },           
+                              index: index,
+                              product: controller.cartList[index].productModel!),
+                        );
                       },
                     ),
                     SizedBox(height: screenWidth(20)),

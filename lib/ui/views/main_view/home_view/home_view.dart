@@ -52,12 +52,15 @@ class _HomeViewState extends State<HomeView> {
                   SizedBox(height: screenWidth(29)),
                   Obx(
                     () => 
-                    // controller.is_loading.value
-                    //     ? CategoryShimmerLoading(shouldShowShimmer: false)
-                    //     : 
-                        controller.categories.isEmpty
-                            ?  CategoryShimmerLoading(shouldShowShimmer: true)
-                            : Container(
+                    controller.is_loading.value 
+                        ? CategoryShimmerLoading(shouldShowShimmer: true)
+                        : !isOnline
+                           ?Text('')
+                         :
+                          controller.categories.isEmpty
+                            ?  Text('no category')
+                            :
+                             Container(
                                 width: screenWidth(1),
                                 height: screenWidth(9),
                                 child: ListView.builder(
@@ -99,6 +102,10 @@ class _HomeViewState extends State<HomeView> {
                     () => controller.is_loading.value
                           
                         ? ProductShimmerLoading()
+                        : !isOnline
+                           ?noInternet(() async {
+                                await refreshController.requestRefresh();
+                              })
                         : controller.categories.isEmpty
                             ? Text("No Products")
                             : Container(

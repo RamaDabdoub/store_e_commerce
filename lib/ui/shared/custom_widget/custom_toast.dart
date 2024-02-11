@@ -40,7 +40,7 @@ class CustomToast {
         toastBuilder: (value) {
           return Container(
             padding: EdgeInsets.all(screenWidth(40)),
-            width: screenWidth(3),
+            width: screenWidth(2.3),
             height: screenWidth(5),
             decoration: BoxDecoration(
                 //      color: AppColors.whiteColor,
@@ -53,10 +53,12 @@ class CustomToast {
                     offset: Offset(0, 3), // changes position of shadow
                   ),
                 ]),
-            child: Customtext(
-              text: message,
-              styleType: TextStyleType.SUBTITLE,
-              maxLines: 2,
+            child: Center(
+              child: Customtext(
+                text: message,
+                styleType: TextStyleType.SUBTITLE,
+                maxLines: 2,
+              ),
             ),
           );
         });

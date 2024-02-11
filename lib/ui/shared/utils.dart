@@ -1,13 +1,43 @@
 import 'package:bot_toast/bot_toast.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:empty_code/core/data/repositry/shared_prefrence_repositry.dart';
+import 'package:empty_code/core/enums/text_style_type.dart';
 import 'package:empty_code/core/services/cart_service.dart';
 import 'package:empty_code/core/services/connectivity_service.dart';
 import 'package:empty_code/core/services/favorite_service.dart';
 import 'package:empty_code/ui/shared/colors.dart';
+import 'package:empty_code/ui/shared/custom_widget/custom_text.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
+
+
+noInternet(Function() OnRefresh){
+  return Padding(
+    padding:  EdgeInsets.only(top:screenWidth(4),left: screenWidth(10),right: screenWidth(10)),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Image.asset('assets/images/pngs/no_internet.png',width: screenWidth(3),height: screenWidth(3),color: AppColors.navyColor,),
+        Container(
+          margin: EdgeInsets.only(bottom: screenWidth(30)),
+          child: Customtext(text: 'No Internet connection',styleType: TextStyleType.SUBTITLE,textColor: AppColors.blackColor,),
+        ),
+         Container(
+          margin: EdgeInsets.only(bottom: screenWidth(20)),
+          child: Customtext(text: 'Check Your connection, then refresh the page',textColor: AppColors.blackColor,),
+        ),
+        ElevatedButton(
+          style: ButtonStyle(backgroundColor: MaterialStateProperty.all(AppColors.navyColor)),
+          onPressed: OnRefresh, child: Customtext(text: 'Refresh'))
+      ],
+    ),
+  );
+}
+
+
 
 void customLoader() => BotToast.showCustomLoading(toastBuilder: (context) {
       return Container(

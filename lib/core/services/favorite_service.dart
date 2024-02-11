@@ -9,7 +9,8 @@ class FavoriteService{
 
 
   bool isFavorite(ProductModel model) {
-    return favoriteList.contains(model);
+   // return favoriteList.contains(model);
+   return favoriteList.where((p0) => p0.id==model.id).length>0;
   }
 
 

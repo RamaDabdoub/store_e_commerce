@@ -14,7 +14,8 @@ import 'package:get/get.dart';
 class CartWidget extends StatefulWidget {
   final int index;
   final ProductModel product;
-  CartWidget({super.key, required this.index, required this.product});
+  final Function()? onTap;
+  CartWidget({super.key, required this.index, required this.product, this.onTap});
 
   @override
   State<CartWidget> createState() => _CartWidgetState();
@@ -25,12 +26,10 @@ class _CartWidgetState extends State<CartWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: ()async{
-        Get.to(ProductDetailsView(product: widget.product))!.then((value) => cartserivce.cartList[widget.index].qty.toString());
-      },
-      child: Obx(()=>
-         Container(
+    return Obx(()=>
+       GestureDetector(
+        onTap: widget.onTap,
+         child: Container(
           margin: EdgeInsets.only(bottom: screenWidth(50)),
           padding:EdgeInsetsDirectional.only(bottom: screenWidth(70),start:screenWidth(70),end:screenWidth(70)),
           width: screenWidth(1),
@@ -63,7 +62,7 @@ class _CartWidgetState extends State<CartWidget> {
                           textColor: AppColors.blackColor,
                           styleType: TextStyleType.CUSTOM,
                           fontWeight: FontWeight.w500,
-                          maxLines: 100,
+                          maxLines: 2,
                         ),
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -131,8 +130,8 @@ class _CartWidgetState extends State<CartWidget> {
               )
             ],
           ),
-        ),
-      ),
+             ),
+       ),
     );
   }
 }

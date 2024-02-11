@@ -17,11 +17,12 @@ class HomeController extends GetxController {
   @override
   void onInit() async {
     if (!isOnline) {
-      CustomToast.showMeassge(message: "There is no intrent");
+      // CustomToast.showMeassge(message: "There is no intrent");
     } else {
       await getCategories();
       await getProductByCategory();
     }
+     await Future.delayed(Duration(seconds: 3)); 
     is_loading.value = false;
     super.onInit();
   }
@@ -35,8 +36,10 @@ class HomeController extends GetxController {
       is_loading.value = false;
       
     } else {
+       is_loading.value = true;
+      await Future.delayed(Duration(seconds: 2)); 
       is_loading.value = false;
-      CustomToast.showMeassge(message: "There is no intrent");
+      // CustomToast.showMeassge(message: "There is no intrent");
     }
   }
 
@@ -55,7 +58,7 @@ class HomeController extends GetxController {
       }
       });
     });
-    // showCategoriesShimmer = false;
+   
   }
 
   getProductByCategory() async {
