@@ -9,6 +9,7 @@ import 'package:empty_code/ui/shared/shared_widget/custom_shimmer.dart';
 import 'package:empty_code/ui/shared/utils.dart';
 import 'package:empty_code/ui/views/main_view/home_view/home_controller.dart';
 import 'package:empty_code/ui/views/main_view/home_view/home_view_widget/categorie_widget.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HomeView extends StatefulWidget {
   HomeView({super.key});
@@ -20,7 +21,8 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   HomeController controller = Get.put(HomeController());
 
-  RefreshController refreshController = RefreshController(initialRefresh: false);
+  RefreshController refreshController =
+      RefreshController(initialRefresh: false);
 
   @override
   Widget build(BuildContext context) {
@@ -30,102 +32,132 @@ class _HomeViewState extends State<HomeView> {
           enablePullDown: true,
           controller: refreshController,
           header: WaterDropHeader(waterDropColor: AppColors.navyColor),
-          onRefresh: ()  async {
-                  await controller.refreshPage();
-                  refreshController.refreshCompleted();
-                },
+          onRefresh: () async {
+            await controller.refreshPage();
+            refreshController.refreshCompleted();
+          },
           child: SingleChildScrollView(
             child: Padding(
               padding: EdgeInsetsDirectional.only(
-                  start: screenWidth(25),
-                  end: screenWidth(25),
-                  top: screenWidth(20),
-                 ),
+                start: screenWidth(25),
+                end: screenWidth(25),
+                top: screenWidth(20),
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Customtext(
-                    text: "Categories",
-                    styleType: TextStyleType.TITLE,
-                    textColor: AppColors.blackColor,
+                children: [               
+                    Obx(()=>controller.showShimmerText.value
+                    ? Shimmer.fromColors(
+                      baseColor: AppColors.blackColor,
+                      highlightColor: AppColors.navyColor,
+                      child: Text(
+                        'Categories',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 25.0,
+                          
+                        ),
+                      ),
+                    ): isOnline
+                     ? Customtext(
+                      text: "Categories",
+                      styleType: TextStyleType.TITLE,
+                      textColor: AppColors.blackColor,
+                    ):Text('')
                   ),
                   SizedBox(height: screenWidth(29)),
                   Obx(
-                    () => 
-                    controller.is_loading.value 
+                    () => controller.is_loading.value &&
+                            controller.categories.isEmpty
                         ? CategoryShimmerLoading(shouldShowShimmer: true)
                         : !isOnline
-                           ?Text('')
-                         :
-                          controller.categories.isEmpty
-                            ?  Text('no category')
-                            :
-                             Container(
-                                width: screenWidth(1),
-                                height: screenWidth(9),
-                                child: ListView.builder(
-                                  itemCount: controller.categories.length,
-                                  scrollDirection: Axis.horizontal,
-                                  itemBuilder: (context, index) {
-                                    return Obx(() => CustomCategory(
-                                        categoryName:
-                                            controller.categories[index],
-                                        backGroundColor:
-                                            controller.selectedCategory.value ==
+                            ? Text('')
+                            : controller.categories.isEmpty
+                                ? Text('no category')
+                                : Container(
+                                    width: screenWidth(1),
+                                    height: screenWidth(9),
+                                    child: ListView.builder(
+                                      itemCount: controller.categories.length,
+                                      scrollDirection: Axis.horizontal,
+                                      itemBuilder: (context, index) {
+                                        return Obx(() => CustomCategory(
+                                            categoryName:
+                                                controller.categories[index],
+                                            backGroundColor: controller
+                                                        .selectedCategory
+                                                        .value ==
                                                     controller.categories[index]
                                                 ? AppColors.navyColor
                                                 : Colors.white,
-                                        textColor:
-                                            controller.selectedCategory.value ==
+                                            textColor: controller
+                                                        .selectedCategory
+                                                        .value ==
                                                     controller.categories[index]
                                                 ? AppColors.whiteColor
                                                 : AppColors.blackColor,
-                                        ontap: () {
-                                          controller.selectedCategory.value =
-                                              controller.categories[index];
-                                          controller.getProductByCategory();
-                                          print(controller
-                                              .selectedCategory.value);
-                                        }));
-                                  },
-                                ),
-                              ),
+                                            ontap: () {
+                                              controller
+                                                      .selectedCategory.value =
+                                                  controller.categories[index];
+                                              controller.getProductByCategory();
+                                              print(controller
+                                                  .selectedCategory.value);
+                                            }));
+                                      },
+                                    ),
+                                  ),
                   ),
                   SizedBox(height: screenWidth(29)),
-                  Customtext(
+                 
+                  Obx(()=>controller.showShimmerText.value
+                    ? Shimmer.fromColors(
+                      baseColor: AppColors.blackColor,
+                      highlightColor: AppColors.navyColor,
+                      child: Text(
+                        'Products',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 25.0,
+                          
+                        ),
+                      ),
+                    ): isOnline
+                    ? Customtext(
                     text: "Products",
                     styleType: TextStyleType.TITLE,
                     textColor: AppColors.blackColor,
+                  ):Text('')
                   ),
                   SizedBox(height: screenWidth(29)),
                   Obx(
                     () => controller.is_loading.value
-                          
                         ? ProductShimmerLoading()
                         : !isOnline
-                           ?noInternet(() async {
+                            ? noInternet(() async {
                                 await refreshController.requestRefresh();
                               })
-                        : controller.categories.isEmpty
-                            ? Text("No Products")
-                            : Container(
-                                width: screenWidth(1),
-                                height: screenWidth(0.75),
-                                child: GridView.builder(
-                                  padding: EdgeInsets.all(screenWidth(40)),
-                                  gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
-                                          crossAxisCount: 2,
-                                          mainAxisSpacing: screenWidth(40),
-                                          crossAxisSpacing: screenWidth(40),
-                                          childAspectRatio: 0.69),
-                                  itemCount: controller.products.length,
-                                  itemBuilder: (context, index) {
-                                    return CustomProduct(
-                                        product: controller.products[index]);
-                                  },
-                                ),
-                              ),
+                            : controller.categories.isEmpty
+                                ? Text("No Products")
+                                : Container(
+                                    width: screenWidth(1),
+                                    height: screenWidth(0.75),
+                                    child: GridView.builder(
+                                      padding: EdgeInsets.all(screenWidth(40)),
+                                      gridDelegate:
+                                          SliverGridDelegateWithFixedCrossAxisCount(
+                                              crossAxisCount: 2,
+                                              mainAxisSpacing: screenWidth(40),
+                                              crossAxisSpacing: screenWidth(40),
+                                              childAspectRatio: 0.69),
+                                      itemCount: controller.products.length,
+                                      itemBuilder: (context, index) {
+                                        return CustomProduct(
+                                            product:
+                                                controller.products[index]);
+                                      },
+                                    ),
+                                  ),
                   ),
                 ],
               ),

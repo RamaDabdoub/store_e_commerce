@@ -9,19 +9,21 @@ import 'package:get/get.dart';
 class HomeController extends GetxController {
 
 
-  bool showOption = false;
+  RxBool showShimmerText = false.obs;
   RxBool is_loading = true.obs;
   RxList<String> categories = <String>[].obs;
   RxList<ProductModel> products = <ProductModel>[].obs;
   RxString selectedCategory = 'ALL'.obs;
   @override
   void onInit() async {
+    showShimmerText.value = true;
     if (!isOnline) {
       // CustomToast.showMeassge(message: "There is no intrent");
     } else {
       await getCategories();
       await getProductByCategory();
     }
+    showShimmerText.value = false;
      await Future.delayed(Duration(seconds: 3)); 
     is_loading.value = false;
     super.onInit();
@@ -29,15 +31,20 @@ class HomeController extends GetxController {
 
   refreshPage() async {
     if (isOnline) {
-     
+      showShimmerText.value = true;
       is_loading.value = true;
       await getCategories();
       await getProductByCategory();
+      showShimmerText.value = false;
       is_loading.value = false;
       
+      
     } else {
+      showShimmerText.value = true;
        is_loading.value = true;
+       categories.clear();
       await Future.delayed(Duration(seconds: 2)); 
+      showShimmerText.value = false;
       is_loading.value = false;
       // CustomToast.showMeassge(message: "There is no intrent");
     }

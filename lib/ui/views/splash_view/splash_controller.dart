@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 class SplashController extends GetxController {
   @override
   void onInit() {
-    Future.delayed(Duration(seconds: 2)).then((value) {
+    Future.delayed(Duration(seconds: 4)).then((value) {
       Get.off(MainView());
     });
 
