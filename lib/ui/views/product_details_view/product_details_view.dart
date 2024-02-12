@@ -25,6 +25,9 @@ class ProductDetailsView extends StatefulWidget {
 
 class _ProductViewState extends State<ProductDetailsView> {
   ProductController controller = Get.put(ProductController());
+   void updateCartWithQuantity(int newQuantity) {
+    Get.back(result: newQuantity);
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -143,6 +146,7 @@ class _ProductViewState extends State<ProductDetailsView> {
                       onPressed: () {
                         cartserivce.addToCart(
                             model: widget.product, qty: controller.count.value);
+                          updateCartWithQuantity(controller.count.value);
                       },
                     ),
                   ),

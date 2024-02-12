@@ -47,18 +47,8 @@ class _HomeViewState extends State<HomeView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [               
                     Obx(()=>controller.showShimmerText.value
-                    ? Shimmer.fromColors(
-                      baseColor: AppColors.blackColor,
-                      highlightColor: AppColors.navyColor,
-                      child: Text(
-                        'Categories',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 25.0,
-                          
-                        ),
-                      ),
-                    ): isOnline
+                    ? TextShimmer(text: 'Categories')
+                    : isOnline
                      ? Customtext(
                       text: "Categories",
                       styleType: TextStyleType.TITLE,
@@ -111,18 +101,8 @@ class _HomeViewState extends State<HomeView> {
                   SizedBox(height: screenWidth(29)),
                  
                   Obx(()=>controller.showShimmerText.value
-                    ? Shimmer.fromColors(
-                      baseColor: AppColors.blackColor,
-                      highlightColor: AppColors.navyColor,
-                      child: Text(
-                        'Products',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 25.0,
-                          
-                        ),
-                      ),
-                    ): isOnline
+                    ?TextShimmer(text: 'Products')
+                    : isOnline
                     ? Customtext(
                     text: "Products",
                     styleType: TextStyleType.TITLE,

@@ -23,6 +23,6 @@ class CartController extends GetxController {
       model: model,
     );
   }
-
+ 
 
 }

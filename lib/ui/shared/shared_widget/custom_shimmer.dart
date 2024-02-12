@@ -73,3 +73,24 @@ class ProductShimmerLoading extends StatelessWidget {
     );
   }
 }
+
+class TextShimmer extends StatelessWidget {
+  final String text;
+  const TextShimmer({super.key, required this.text});
+
+  @override
+  Widget build(BuildContext context) {
+    return Shimmer.fromColors(
+                      baseColor: AppColors.blackColor,
+                      highlightColor: AppColors.navyColor,
+                      child: Text(
+                        text,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 25.0,
+                          
+                        ),
+                      ),
+                    );
+  }
+}

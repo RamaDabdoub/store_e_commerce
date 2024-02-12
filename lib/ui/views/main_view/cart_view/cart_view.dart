@@ -47,8 +47,7 @@ class _CartViewState extends State<CartView> {
                       shrinkWrap: true,
                       itemCount: controller.cartList.length,
                       itemBuilder: (context, index) {
-                        return InkWell(
-                         
+                        return InkWell(                        
                           child: CartWidget(
                                  onTap: ()async{
                             await  Get.to(ProductDetailsView(product: controller.cartList[index].productModel!))!.then((value) => cartserivce.cartList[index].qty.toString()); 
