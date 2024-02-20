@@ -4,6 +4,7 @@ import 'package:empty_code/core/data/repositry/shared_prefrence_repositry.dart';
 import 'package:empty_code/core/services/cart_service.dart';
 import 'package:empty_code/core/services/connectivity_service.dart';
 import 'package:empty_code/core/services/favorite_service.dart';
+import 'package:empty_code/core/services/location_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -31,7 +32,7 @@ Future<void> main() async {
   );
 
   Get.put(FavoriteService());
-
+  Get.put(LocationService());
 
   runApp(const MyApp());
 }

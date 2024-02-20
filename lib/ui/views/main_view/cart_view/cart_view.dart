@@ -1,7 +1,7 @@
 import 'package:empty_code/core/enums/text_style_type.dart';
 import 'package:empty_code/ui/shared/colors.dart';
 import 'package:empty_code/ui/shared/custom_widget/custom_text.dart';
-import 'package:empty_code/ui/shared/shared_widget/cutsom_button.dart';
+import 'package:empty_code/ui/shared/shared_widget/cutsom_button_order.dart';
 import 'package:empty_code/ui/shared/shared_widget/price_detail.dart';
 import 'package:empty_code/ui/shared/utils.dart';
 import 'package:empty_code/ui/views/checkout_view/checkout_view.dart';
@@ -47,11 +47,13 @@ class _CartViewState extends State<CartView> {
                       shrinkWrap: true,
                       itemCount: controller.cartList.length,
                       itemBuilder: (context, index) {
-                        return InkWell(                        
+                        return InkWell( 
+                          onTap: (){Get.off(ProductDetailsView(product: controller.cartList[index].productModel!));}  ,                   
                           child: CartWidget(
-                                 onTap: ()async{
-                            await  Get.to(ProductDetailsView(product: controller.cartList[index].productModel!))!.then((value) => cartserivce.cartList[index].qty.toString()); 
-                          },           
+                            
+                          //        onTap: ()async{
+                          //   await  Get.to(ProductDetailsView(product: controller.cartList[index].productModel!))!.then((value) => cartserivce.cartList[index].qty.toString()); 
+                          // },           
                               index: index,
                               product: controller.cartList[index].productModel!),
                         );
@@ -70,7 +72,7 @@ class _CartViewState extends State<CartView> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    CustomButton(
+                    CustomButtonOrder(
                       text: "Placed Order",
                       onPressed: () {
                         Get.off(CheckOutView());

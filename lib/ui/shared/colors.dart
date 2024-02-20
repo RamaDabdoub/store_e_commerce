@@ -16,5 +16,10 @@ class AppColors {
   static const Color blackColor = Color.fromRGBO(0, 0, 0, 1);
   static const Color terkwazColor = Color.fromRGBO(48, 64, 77, 1);
   static const Color redColor = Color.fromRGBO(255, 0, 0, 1);
+  static const List<Color> gradientColor = [
+    Color.fromRGBO(46, 49, 146, 1),
+    Color.fromRGBO(0, 173, 239, 1),
+    Color.fromRGBO(0, 173, 239, 1),
+  ];
 }
 

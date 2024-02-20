@@ -5,6 +5,7 @@ import 'package:empty_code/core/enums/text_style_type.dart';
 import 'package:empty_code/core/services/cart_service.dart';
 import 'package:empty_code/core/services/connectivity_service.dart';
 import 'package:empty_code/core/services/favorite_service.dart';
+import 'package:empty_code/core/services/location_service.dart';
 import 'package:empty_code/ui/shared/colors.dart';
 import 'package:empty_code/ui/shared/custom_widget/custom_text.dart';
 import 'package:flutter/cupertino.dart';
@@ -94,5 +95,6 @@ ConnectivitySerivce get connectivitySerivce => Get.find<ConnectivitySerivce>();
 Connectivity get connectivity => Get.find<Connectivity>();
 CartService get cartserivce => Get.find<CartService>();
 FavoriteService get favoriteservice => Get.find<FavoriteService>();
+LocationService get locationService => Get.find<LocationService>();
 
 bool isOnline = true;

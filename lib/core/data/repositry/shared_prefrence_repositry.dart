@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:empty_code/core/data/models/cart_model.dart';
 import 'package:empty_code/core/data/models/product_model.dart';
+import 'package:empty_code/core/data/models/remmber_me.dart';
+import 'package:empty_code/core/data/models/token_info.dart';
 import 'package:empty_code/core/enums/data_type.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -40,31 +44,31 @@ class SharedPrefrenceRepository {
       return true;
   }
 
-  // RememberMe getLoginInfo() {
-  //   if (pref.containsKey(PREF_LOGIN_INFO))
-  //   return RememberMe.fromJson(jsonDecode(getPrefrence(PREF_LOGIN_INFO)));
-  //   else 
-  //    return RememberMe(username: '', password: '', rememberme: false);
+  RememberMe getLoginInfo() {
+    if (pref.containsKey(PREF_LOGIN_INFO))
+    return RememberMe.fromJson(jsonDecode(getPrefrence(PREF_LOGIN_INFO)));
+    else 
+     return RememberMe(username: '', password: '', rememberme: false);
   
-  // }
+  }
 
-  // void setLoginInfo(RememberMe value) {
-  //   setPrefrenc(
-  //       type: DataType.STRING,
-  //       key: PREF_LOGIN_INFO,
-  //       value: jsonEncode(value.toJson()));
-  // }
+  void setLoginInfo(RememberMe value) {
+    setPrefrenc(
+        type: DataType.STRING,
+        key: PREF_LOGIN_INFO,
+        value: jsonEncode(value.toJson()));
+  }
 
-  // void setTokenInfo(TokenInfo token) {
-  //   setPrefrenc(
-  //       type: DataType.STRING,
-  //       key: PREF_TOKEN_INFO,
-  //       value: jsonEncode(token.toJson()));
-  // }
+  void setTokenInfo(TokenInfo token) {
+    setPrefrenc(
+        type: DataType.STRING,
+        key: PREF_TOKEN_INFO,
+        value: jsonEncode(token.toJson()));
+  }
 
-  // TokenInfo getTokenInfo() {
-  //   return TokenInfo.fromJson(jsonDecode(getPrefrence(PREF_TOKEN_INFO)));
-  // }
+  TokenInfo getTokenInfo() {
+    return TokenInfo.fromJson(jsonDecode(getPrefrence(PREF_TOKEN_INFO)));
+  }
 
   void setAppLanguage(String code) {
     setPrefrenc(type: DataType.STRING, key: PREF_APP_LANG, value: code);

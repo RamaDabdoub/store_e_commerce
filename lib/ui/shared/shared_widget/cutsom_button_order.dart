@@ -6,11 +6,11 @@ import 'package:flutter/material.dart';
 
 
 
-class CustomButton extends StatelessWidget {
+class CustomButtonOrder extends StatelessWidget {
   final String text;
   final Function? onPressed;
   
-  const CustomButton({
+  const CustomButtonOrder({
     Key? key,
     required this.text,
     this.onPressed,

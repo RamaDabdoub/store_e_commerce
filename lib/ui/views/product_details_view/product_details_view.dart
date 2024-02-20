@@ -5,7 +5,7 @@ import 'package:empty_code/ui/shared/custom_widget/custom_text.dart';
 import 'package:empty_code/ui/shared/shared_widget/control_icons.dart';
 import 'package:empty_code/ui/shared/shared_widget/custom_rating.dart';
 import 'package:empty_code/ui/shared/shared_widget/custom_row.dart';
-import 'package:empty_code/ui/shared/shared_widget/cutsom_button.dart';
+import 'package:empty_code/ui/shared/shared_widget/cutsom_button_order.dart';
 import 'package:empty_code/ui/shared/utils.dart';
 import 'package:empty_code/ui/views/product_details_view/product_details_controller.dart';
 import 'package:flutter/material.dart';
@@ -141,7 +141,7 @@ class _ProductViewState extends State<ProductDetailsView> {
                 children: [
                   Expanded(
                     flex: 4,
-                    child: CustomButton(
+                    child: CustomButtonOrder(
                       text: "Add to cart",
                       onPressed: () {
                         cartserivce.addToCart(
