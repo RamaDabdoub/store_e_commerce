@@ -42,7 +42,7 @@ class CustomTextField extends StatelessWidget {
           ),
           hintText: hintText,
           hintStyle: TextStyle(
-            color: Colors.white,
+            color: Colors.white.withOpacity(0.5),
             fontSize: screenWidth(30) ,
           ),
           
@@ -51,7 +51,7 @@ class CustomTextField extends StatelessWidget {
           contentPadding: EdgeInsets.symmetric(
               vertical: screenWidth(20) , horizontal: screenWidth(20) ),
           errorStyle:
-              TextStyle(color: AppColors.lightblueColor, fontSize: screenWidth(24) ),
+              TextStyle(color: AppColors.lightblueColor.withOpacity(0.8), fontSize: screenWidth(26) ),
         ));
   }
 }

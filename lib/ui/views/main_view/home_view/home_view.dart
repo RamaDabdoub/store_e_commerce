@@ -129,7 +129,7 @@ class _HomeViewState extends State<HomeView> {
                                               crossAxisCount: 2,
                                               mainAxisSpacing: screenWidth(40),
                                               crossAxisSpacing: screenWidth(40),
-                                              childAspectRatio: 0.69),
+                                              childAspectRatio: 0.7),
                                       itemCount: controller.products.length,
                                       itemBuilder: (context, index) {
                                         return CustomProduct(

@@ -9,11 +9,11 @@ import 'package:get/get.dart';
 class SignUpController extends GetxController{
     RxBool obscureText = true.obs;
   RxString passwordError = ''.obs;
-  TextEditingController usernameController = TextEditingController(text: 'Rama');
-  TextEditingController passwordController = TextEditingController(text: '20052005');
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   RxBool isLoading = false.obs;
-  String email = 'Malek@';
+  String username = 'Malek';
   String password = '20052005';
 
 

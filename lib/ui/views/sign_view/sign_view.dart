@@ -75,6 +75,7 @@ class _SignUpViewState extends State<SignUpView> {
                         child: CustomTextField(
                           obscureText: false,
                            hintText: 'Username',
+                           controller: controller.usernameController,
                           validator: (value) {
                             if (value!.isEmpty)
                               return "Please enter Username";
@@ -93,8 +94,8 @@ class _SignUpViewState extends State<SignUpView> {
                                 icon: Icon(
                                   size:17,
                                   controller.obscureText.value
-                                      ? Icons.visibility
-                                      : Icons.visibility_off,
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
                                   color: Colors.white,
                                 ),
                                 onPressed: () {
@@ -129,8 +130,8 @@ class _SignUpViewState extends State<SignUpView> {
                                 icon: Icon(
                                   size:17,
                                   controller.obscureText.value
-                                      ? Icons.visibility
-                                      : Icons.visibility_off,
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
                                   color: Colors.white,
                                 ),
                                 onPressed: () {

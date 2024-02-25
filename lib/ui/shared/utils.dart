@@ -43,12 +43,12 @@ noInternet(Function() OnRefresh){
  customLoader() => BotToast.showCustomLoading(toastBuilder: (context) {
       return Container(
         decoration: BoxDecoration(
-            color:Color.fromRGBO(4, 163, 232, 1).withOpacity(0.5),
-            borderRadius: BorderRadius.circular(10)),
+            color:Color.fromRGBO(79, 202, 255, 1).withOpacity(0.1),
+            borderRadius: BorderRadius.circular(50)),
         width: screenWidth(4),
         height: screenWidth(4),
         child: SpinKitCircle(
-          color:AppColors.graylightColor,
+          color:AppColors.skyblueColor,
           size: screenWidth(8),
         ),
       );
@@ -69,8 +69,7 @@ bool isComplexPassword(String password) {
 }
 
 bool isUsernameValid(String username) {
-  // return RegExp(r"^[a-zA-Z]+$").hasMatch(username);
-  return RegExp(r"^[a-zA-Z0-9_]+$").hasMatch(username);
+  return RegExp(r'^[a-zA-Z0-9_]+$').hasMatch(username);
 }
 
 double screenWidth(double percent) {

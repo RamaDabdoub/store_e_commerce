@@ -72,6 +72,8 @@ class _LoginViewState extends State<LoginView> {
                           validator: (value) {
                             if (value!.isEmpty)
                               return "Please enter Username";
+                              else if (value.length<4)
+                              return "Username must be at least 4 characters";
                             else if (!isUsernameValid(value))
                               return "Please enter Valid Username";
                           },
