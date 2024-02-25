@@ -37,11 +37,11 @@ class NetworkUtil {
         response = await http.put(url, body: (body), headers: headers);
         break;
     }
-    if (response.statusCode == 401) {
-      //AnAUTH
-      // Get.to(LoginView()); // عمل لوغ ان جديد واخد التوكين
-      return; //وقف التنفيذ
-    }
+    // if (response.statusCode == 401) {
+    //   //AnAUTH
+    //   // Get.to(LoginView()); // عمل لوغ ان جديد واخد التوكين
+    //   return; //وقف التنفيذ
+    // }
 
     Map<String, dynamic> jsonResponse = {};
     dynamic result;

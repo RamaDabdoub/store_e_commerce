@@ -6,8 +6,6 @@ import 'package:empty_code/ui/views/landing_view/landing_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:flutter_svg/svg.dart';
-
 class LandingView extends StatefulWidget {
   const LandingView({super.key});
 
@@ -29,62 +27,36 @@ class _LandingViewState extends State<LandingView> {
               fit: BoxFit.fitWidth,
             ),
             Positioned(
-              top: screenWidth(30),
-              right: screenWidth(14),
-              child: InkWell(
-                onTap: () {
-                  Get.bottomSheet(
-                    backgroundColor:Color.fromARGB(255, 197, 239, 255),
-                    Container(
-                      decoration: BoxDecoration( 
-                          
-                        borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(50),
-                    topRight: Radius.circular(50)),),
-                   
-                      height: screenWidth(3),
-                      child: Padding(
-                        padding:  EdgeInsets.only(top:screenWidth(20),right: screenWidth(15)),
-                        child: Column(
-                          children: [
-                            Expanded(
-                              child: ListTile(
-                                hoverColor: AppColors.graylightColor,
-                                title: Text('English'),
-                                onTap: () {
-                                  controller.changeLanguage('en');
-                                  Get.back();
-                                },
-                              ),
-                            ),
-                             Divider(
-          height: screenWidth(300),
-          indent: screenWidth(30),
-          endIndent: screenWidth(15),
-          thickness: screenWidth(300),
-          color: AppColors.navyColor,
-        ),
-                            Expanded(
-                              child: ListTile(
-                                title: Text('العربية'),
-                                onTap: () {
-                                  controller.changeLanguage('ar');
-                                  Get.back();
-                                },
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                },
-                child: SvgPicture.asset(
-                  'assets/images/svgs/earth-globe.svg',
-                  colorFilter: ColorFilter.mode(
-                    AppColors.skyblueColor,
-                    BlendMode.srcIn,
+              top: screenWidth(40),
+              right: controller.selectedLanguage.value == 'ar'
+                  ? screenWidth(1.3)
+                  : 0,
+              left: controller.selectedLanguage.value == 'en'
+                  ? screenWidth(1.3)
+                  : 0,
+              child: Container(
+                width: screenWidth(1),
+                child: DropdownButton<String>(
+                  icon: Icon(
+                    Icons.language,
+                    color: AppColors.skyblueColor,
                   ),
+                  dropdownColor: Color.fromRGBO(151, 151, 151, 1).withOpacity(0.8),
+                  underline: SizedBox(),
+                  onChanged: (String? newValue) {
+                    if (newValue == 'en') {
+                      controller.changeLanguage('en');
+                    } else if (newValue == 'ar') {
+                      controller.changeLanguage('ar');
+                    }
+                  },
+                  items: <String>['en', 'ar']
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value == 'en' ? 'English' : 'العربية'),
+                    );
+                  }).toList(),
                 ),
               ),
             ),

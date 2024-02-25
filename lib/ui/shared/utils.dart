@@ -40,15 +40,15 @@ noInternet(Function() OnRefresh){
 
 
 
-void customLoader() => BotToast.showCustomLoading(toastBuilder: (context) {
+ customLoader() => BotToast.showCustomLoading(toastBuilder: (context) {
       return Container(
         decoration: BoxDecoration(
-            color: Color.fromARGB(255, 247, 103, 103).withOpacity(0.5),
+            color:Color.fromRGBO(4, 163, 232, 1).withOpacity(0.5),
             borderRadius: BorderRadius.circular(10)),
         width: screenWidth(4),
         height: screenWidth(4),
         child: SpinKitCircle(
-          color: AppColors.graylightColor,
+          color:AppColors.graylightColor,
           size: screenWidth(8),
         ),
       );

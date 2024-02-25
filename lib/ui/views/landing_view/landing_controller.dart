@@ -6,15 +6,18 @@ import 'package:get/get.dart';
 
 
 class LandingController extends GetxController {
+ 
+   RxString selectedLanguage = 'en'.obs; 
    void Login(){
     Get.off(LoginView());
   }
    void SignupView(){
     Get.off(SignUpView());
   }
+  
   void changeLanguage(String code) {
-    storage
-        .setAppLanguage(code); 
+    storage.setAppLanguage(code);
+    selectedLanguage.value = code; 
     Get.updateLocale(getLocal());
   }
   

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 
 class CustomProfileIcon extends StatelessWidget {
+  final double? widthimg;
   final double hw;
   final String? urlOfImg;
   final String? assetImg;
@@ -16,7 +17,7 @@ class CustomProfileIcon extends StatelessWidget {
       this.urlOfImg,
       this.assetImg,
       this.backgroundColor,
-      this.gradientColor = AppColors.gradientColor});
+      this.gradientColor = AppColors.gradientColor, this.widthimg});
 
   @override
   Widget build(BuildContext context) {

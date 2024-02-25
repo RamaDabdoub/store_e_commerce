@@ -42,7 +42,7 @@ class _MainViewState extends State<MainView> {
             children: [
               AllProductsView(),
               HomeView(),
-              FavoriteView(),
+              if (Get.arguments == 'favorite') FavoriteView() else FavoriteView(),
               CartView()
             ],
           ),
